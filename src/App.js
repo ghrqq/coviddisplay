@@ -1,69 +1,48 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Placeholder } from "semantic-ui-react";
+
 import { Router, navigate } from "@reach/router";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Navigation from "./pages/Navigation";
-import SingleCountryDisplayer from "./components/SingleCountryDisplayer";
-import GlobalDisplay from "./components/GlobalDisplay";
-import { countryNamer } from "./tools/CountryNamer";
+import Home from "./pages/Home";
 
 export const CountryContext = React.createContext([]);
+export const InitialCountryContext = React.createContext([]);
+export const GlobalRate = React.createContext([]);
 
 function App() {
   const [lang, setlang] = useState({});
-  const [loading, setloading] = useState(true);
-  const [callChilds, setcallChilds] = useState(false);
+
+  // Data loading indicators
+  const [loading, setloading] = useState(false);
+  const [isRelatedLoading, setisRelatedLoading] = useState(false);
+  const [isSelectedLoading, setisSelectedLoading] = useState(false);
+
+  // Data states
   const [details, setdetails] = useState({});
   const [selectedCountry, setselectedCountry] = useState("");
   const [relatedCountry, setrelatedCountry] = useState("");
+
+  // Const Global
+
+  const [globalRates, setglobalRates] = useState({});
   const [globalData, setglobalData] = useState({});
   const [countries, setcountries] = useState([]);
   const [apiMessage, setapiMessage] = useState("");
-  const [relatedData, setrelatedData] = useState({});
 
   const language = window.navigator.userLanguage || window.navigator.language;
-  const getUserGeolocationDetailss = () => {
-    fetch(
-      "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-    )
-      .then((response) => response.json())
-      .then((data) => setdetails(data));
-    setselectedCountry(details.country_name);
-  };
+  // const getUserGeolocationDetailss = () => {
+  //   setisSelectedLoading(true);
+  //   fetch(
+  //     "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setdetails(data));
+  //   setselectedCountry(details.country_name);
 
-  const languageSetter = async () => {
-    const langu = window.navigator.userLanguage || window.navigator.language;
-    const languageName =
-      (await langu.length) > 2
-        ? countryNamer(langu.split(3, 5).toUpperCase(), "name")
-        : countryNamer(langu.toUpperCase(), "name");
-
-    setlang({ ab: langu, name: languageName[0] });
-    setrelatedCountry(languageName[0]);
-  };
-
-  useEffect(() => {
-    async function getUserGeolocationDetails() {
-      const result = await (
-        await fetch(
-          "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-        )
-      ).json();
-
-      setdetails(result);
-      setselectedCountry(result.country_name);
-      setcallChilds(true);
-      // const slctdData = countryPicker(selectedCountry);
-      // setselectedData(slctdData);
-      // const rltdData = countryPicker(relatedCountry);
-      // setrelatedData(rltdData);
-    }
-
-    getUserGeolocationDetails();
-    languageSetter();
-  }, []);
+  //   setisSelectedLoading(false);
+  // };
 
   useEffect(() => {
     setloading(true);
@@ -77,6 +56,14 @@ function App() {
         })
       ).json();
       setglobalData(result.Global);
+      let rates = {
+        GlobalDeathRate: result.Global.NewDeaths / result.Global.TotalDeaths,
+        GlobalCaseRate:
+          result.Global.NewConfirmed / result.Global.TotalConfirmed,
+        GlobalRecoveryRate:
+          result.Global.NewRecovered / result.Global.TotalRecovered,
+      };
+      setglobalRates(rates);
       setcountries(result.Countries);
       setapiMessage(result.Message);
       setloading(false);
@@ -91,58 +78,17 @@ function App() {
     );
   return (
     <CountryContext.Provider value={[countries, setcountries]}>
-      <div className="app">
-        <Navigation />
-        <Router id="router">
-          <About path="about" />
-          <Contact path="contact" />
-        </Router>
+      <GlobalRate.Provider value={[globalRates, setglobalRates]}>
+        <div className="app">
+          <Navigation />
+          <Router id="router">
+            <Home path="/" />
 
-        {!loading ? (
-          <GlobalDisplay sum={globalData} />
-        ) : (
-          <Placeholder>
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder>
-        )}
-
-        {countries !== [] || countries !== undefined ? (
-          <div className="container-top">
-            <div className="container">
-              <select onChange={(e) => setselectedCountry(e.target.value)}>
-                <option value={selectedCountry}>
-                  Please choose a country.
-                </option>
-                {countries.map((country) => (
-                  <option value={country.Country}>{country.Country}</option>
-                ))}
-              </select>
-              <SingleCountryDisplayer val={selectedCountry} />
-            </div>
-            <div className="container">
-              <select onChange={(e) => setrelatedCountry(e.target.value)}>
-                <option value={relatedCountry}>Please choose a country.</option>
-                {countries.map((country) => (
-                  <option value={country.Country}>{country.Country}</option>
-                ))}
-              </select>
-              <SingleCountryDisplayer val={relatedCountry} />
-            </div>
-          </div>
-        ) : (
-          <Placeholder>
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder>
-        )}
-      </div>
+            <About path="about" />
+            <Contact path="contact" />
+          </Router>
+        </div>
+      </GlobalRate.Provider>
     </CountryContext.Provider>
   );
 }

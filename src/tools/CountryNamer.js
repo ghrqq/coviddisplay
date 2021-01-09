@@ -14,7 +14,7 @@ export const countryNamer = (val, selector) => {
       .filter((country) => country["iso3"] === val)
       .map((country) => country[selector]);
   }
-  if (val.lengt > 3) {
+  if (val.length > 3) {
     return countryJSON
       .filter((country) => country["name"] === val)
       .map((country) => country[selector]);

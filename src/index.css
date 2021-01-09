@@ -1,13 +1,236 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.wrapper {
+  margin: 1em 1em;
+}
+
+.country-card-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.country-adder {
+  display: block;
+  visibility: hidden;
+  text-align: center;
+  text-justify: justify;
+  font-size: 18px;
+  font-weight: 900;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.country-adder:hover {
+  color: black;
+  filter: invert(70%);
+}
+
+.country-adder-text {
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  font-size: 36px;
+  padding: 0 30px;
+  justify-content: center;
+  text-shadow: 3px 2px 6px rgba(150, 150, 150, 1);
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .country-adder {
+    visibility: visible;
+  }
+}
+
+/* Single country card */
+.country-card {
+  width: 283px;
+  height: 497px;
+  left: 19px;
+  top: 61px;
+  /* margin: 0 auto; */
+
+  background: #e5e5e5;
+  border-radius: 20px;
+}
+
+.country-card img {
+  display: block;
+  color: red;
+  fill: red;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.country-image {
+  position: relative;
+  display: block;
+  height: 30%;
+  max-width: 50%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+/* 
+.ratio-image {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+} */
+
+/* Filters for svg country maps */
+
+.filter-green {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+}
+
+.filter-red {
+  filter: invert(12%) sepia(42%) saturate(6254%) hue-rotate(354deg)
+    brightness(93%) contrast(121%);
+}
+
+/* End of filters */
+
+table {
+  margin: 0 auto;
+  width: 90%;
+  background-color: #c4c4c4;
+  border-radius: 20px;
+}
+td {
+  border-bottom: 1px black dotted;
+}
+.data-exp {
+  color: black;
+  font-size: 9px;
+
+  vertical-align: middle;
+}
+.data-num {
+  color: red;
+  font-size: 18px;
+
+  vertical-align: middle;
+}
+
+.country-selector {
+  width: 80%;
+  margin: 10px auto;
+  font-size: 16px;
+  color: black;
+  text-emphasis: weigt;
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  display: block;
+}
+
+option {
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+}
+select {
+  border: none !important;
+  text-align: center;
+  text-align-last: center;
+}
+
+/* Pages */
+
+.home {
+  background-image: url("./pages/img/earths.png");
+  background-color: black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30%;
+  margin: auto auto;
+  height: 100%;
+
+  filter: drop-shadow(10px 10px 10px white);
+}
+
+/* Global */
+
+.global-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  height: 90vh;
+}
+.global-left {
+  display: flex;
+  flex-basis: 30%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.global-right {
+  display: flex;
+  flex-basis: 30%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.global-data-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: auto;
+  height: 25%;
+  margin: 0 auto;
+  text-align: center;
+}
+.global-data-exp {
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.global-data-num {
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* This is only for dev */
+.test-country-image {
+  width: 210px;
+  height: 149px;
+  background-color: aqua;
+  margin: 5px auto;
+  padding: 5px;
+  border: 2px black dotted;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+/* Code above only for dev purposes */
