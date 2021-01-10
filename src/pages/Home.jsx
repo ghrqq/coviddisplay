@@ -74,7 +74,7 @@ export default function Home(props) {
       </div>
 
       <div className="country-card-container">
-        {isSelectedLoading === false ? (
+        {initial.length >= 2 ? (
           initial.map((item) => {
             return (
               <div className="wrapper">
