@@ -1,15 +1,17 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { Router, navigate } from "@reach/router";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
+import Compare from "./pages/Compare";
 
 export const CountryContext = React.createContext([]);
 export const InitialCountryContext = React.createContext([]);
 export const GlobalRate = React.createContext([]);
+export const CompareContext = React.createContext([]);
 
 function App() {
   const [lang, setlang] = useState({});
@@ -31,6 +33,8 @@ function App() {
   const [countries, setcountries] = useState([]);
   const [apiMessage, setapiMessage] = useState("");
 
+  // Compare State
+
   const language = window.navigator.userLanguage || window.navigator.language;
   // const getUserGeolocationDetailss = () => {
   //   setisSelectedLoading(true);
@@ -43,6 +47,23 @@ function App() {
 
   //   setisSelectedLoading(false);
   // };
+
+  const compRef = useRef([]);
+
+  const compareNavigator = (country) => {
+    if (compRef.current.length < 2) {
+      compRef.current = [...compRef.current, country];
+    }
+    if (compRef.current.length === 2) {
+      navigate(`/compare/${compRef.current[0]}/${compRef.current[1]}`);
+      window.scrollTo(0, 0);
+      compRef.current = [];
+    }
+  };
+
+  const removeFromCompare = (country) => {
+    compRef.current = [];
+  };
 
   useEffect(() => {
     setloading(true);
@@ -79,15 +100,18 @@ function App() {
   return (
     <CountryContext.Provider value={[countries, setcountries]}>
       <GlobalRate.Provider value={[globalRates, setglobalRates]}>
-        <div className="app">
-          <Navigation />
-          <Router id="router">
-            <Home path="/" />
-
-            <About path="about" />
-            <Contact path="contact" />
-          </Router>
-        </div>
+        <CompareContext.Provider value={[compareNavigator, removeFromCompare]}>
+          <div className="app">
+            {console.log("compref: ", compRef.current)}
+            <Navigation />
+            <Router id="router">
+              <Home path="/" />
+              <Compare path="/compare/:country/:country2" />
+              <About path="about" />
+              <Contact path="contact" />
+            </Router>
+          </div>
+        </CompareContext.Provider>
       </GlobalRate.Provider>
     </CountryContext.Provider>
   );

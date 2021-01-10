@@ -91,6 +91,7 @@ code {
   max-width: 50%;
   margin: 0 auto;
   padding-top: 10px;
+  filter: drop-shadow(10px 10px 10px black);
 }
 /* 
 .ratio-image {
@@ -121,10 +122,14 @@ table {
   width: 90%;
   background-color: #c4c4c4;
   border-radius: 20px;
+  text-align: center;
 }
 td {
   border-bottom: 1px black dotted;
+  text-align: center;
+  margin: 0 auto;
 }
+
 .data-exp {
   color: black;
   font-size: 9px;
@@ -133,9 +138,20 @@ td {
 }
 .data-num {
   color: red;
-  font-size: 18px;
+  font-size: 12px;
 
   vertical-align: middle;
+}
+.data-rate-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
+.rate-item {
+  display: flex;
 }
 
 .country-selector {
@@ -160,6 +176,52 @@ select {
   text-align-last: center;
 }
 
+.red {
+  color: red;
+}
+.compare-button {
+  height: 100%;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  font-size: 24px;
+  /* padding: 0 30px; */
+  justify-content: center;
+  text-shadow: 3px 2px 6px rgba(150, 150, 150, 1);
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.compare-button[wobble="1"] {
+  animation: wobble 1s 1;
+}
+
+@keyframes wobble {
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.country-card-footer {
+  display: block;
+
+  margin: 40px auto;
+}
 /* Pages */
 
 .home {
@@ -171,7 +233,7 @@ select {
   margin: auto auto;
   height: 100%;
 
-  filter: drop-shadow(10px 10px 10px white);
+  /* filter: drop-shadow(150px 150px 50px white); */
 }
 
 /* Global */

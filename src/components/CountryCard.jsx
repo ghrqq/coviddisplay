@@ -1,24 +1,27 @@
 import React, { useContext, useState, useEffect } from "react";
-import { CountryContext, GlobalRate } from "../App";
+import { CountryContext, GlobalRate, CompareContext } from "../App";
 import CountrySelector from "./CountrySelector";
 import img from "./img/az/vector.svg";
 import preloader from "./preloader.gif";
 import { countryNamer } from "../tools/CountryNamer";
+import CountryDataTable from "./CountryDataTable";
 
 export default function CountryCard({ country }) {
   const [selected, setselected] = useState(country);
   const [countries] = useContext(CountryContext);
   const [rates] = useContext(GlobalRate);
+  const [compareHandler, removeFromCompare] = useContext(CompareContext);
   const [data, setdata] = useState("");
   const [countryMap, setcountryMap] = useState(preloader);
   const [filter, setfilter] = useState("filter-green");
+  const [wobble, setwobble] = useState(0);
+  const [isAddedToCompare, setisAddedToCompare] = useState(false);
 
   const handleChange = (val) => {
     setselected(val);
   };
 
   useEffect(() => {
-    console.log("useeffect on selected fired.", selected);
     if (selected === " ") {
       const random = countries[Math.floor(Math.random() * 100)];
       setdata(random);
@@ -36,7 +39,6 @@ export default function CountryCard({ country }) {
   }, [selected]);
 
   useEffect(() => {
-    console.log("useeffect on refresh fired.", selected);
     if (selected === " ") {
       const random = countries[Math.floor(Math.random() * 100)];
       setdata(random);
@@ -55,12 +57,28 @@ export default function CountryCard({ country }) {
   }, [countries]);
 
   useEffect(() => {
-    // const lower = countryNamer(selected, "iso2");
+    const mapPath = require("./img/" + selected.toLowerCase() + "/vector.svg")
+      ? require("./img/" + selected.toLowerCase() + "/vector.svg")
+      : require("./404.png");
 
-    // console.log("lower: ", lower[0].toLowerCase());
-    const mapPath = require("./img/" + selected.toLowerCase() + "/vector.svg");
+    if (!mapPath) {
+      const notFound = require("./404.png");
+      setcountryMap(notFound);
+    }
     setcountryMap(mapPath.default);
   }, [selected]);
+
+  const compareClickHandler = () => {
+    setwobble(1);
+    compareHandler(selected);
+    setisAddedToCompare(true);
+  };
+
+  const removeClickHandler = () => {
+    setwobble(1);
+    removeFromCompare(selected);
+    setisAddedToCompare(false);
+  };
 
   return (
     <div className="country-card">
@@ -75,48 +93,29 @@ export default function CountryCard({ country }) {
         {/* TODO props and change handler will be added */}
       </div>
       <div className="country-data">
-        <table>
-          <tr>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-            <td>
-              <div className="data-exp">New Cases</div>
-              <div className="data-num">18191</div>
-            </td>
-          </tr>
-        </table>
+        {data.length > 0 ? <CountryDataTable country={data} /> : null}
+      </div>
+      <div className="country-card-footer">
+        {isAddedToCompare ? (
+          <div
+            className="compare-button red"
+            onClick={removeClickHandler}
+            onAnimationEnd={() => setwobble(0)}
+            wobble={wobble}
+          >
+            {" "}
+            Remove{" "}
+          </div>
+        ) : (
+          <div
+            className="compare-button"
+            onClick={compareClickHandler}
+            onAnimationEnd={() => setwobble(0)}
+            wobble={wobble}
+          >
+            Add to Compare
+          </div>
+        )}
       </div>
     </div>
   );
