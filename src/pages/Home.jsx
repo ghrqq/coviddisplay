@@ -45,19 +45,20 @@ export default function Home(props) {
         setdetails(result);
 
         tempArr.push(result.country_code);
+      } else {
+        tempArr.push("DE");
       }
-      tempArr.push("DE");
 
       const langu = window.navigator.userLanguage || window.navigator.language;
       console.log("langguuuu: ", langu);
       const languageName =
-        (await langu.length) > 2
-          ? countryNamer(langu.split(3, 5).toUpperCase(), "name")
+        langu.length > 2
+          ? countryNamer(langu.slice(3, 5).toUpperCase(), "name")
           : countryNamer(langu.toUpperCase(), "name");
 
       setlang({ ab: langu, name: languageName[0] });
 
-      tempArr.push(langu.toUpperCase());
+      tempArr.push(langu.slice(3, 5).toUpperCase());
       console.log(tempArr);
 
       setinitial(tempArr);
