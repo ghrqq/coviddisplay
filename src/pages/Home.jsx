@@ -40,9 +40,13 @@ export default function Home(props) {
           "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
         )
       ).json();
-      setdetails(result);
 
-      tempArr.push(result.country_code);
+      if (result) {
+        setdetails(result);
+
+        tempArr.push(result.country_code);
+      }
+      tempArr.push("DE");
 
       const langu = window.navigator.userLanguage || window.navigator.language;
       console.log("langguuuu: ", langu);
