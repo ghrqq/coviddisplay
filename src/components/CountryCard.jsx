@@ -27,7 +27,7 @@ export default function CountryCard({ country }) {
       setdata(random);
     }
     const choice = countries.filter((item) => item.CountryCode === selected);
-    console.log("choice on selected: ", choice);
+
     setdata(choice);
     if (choice.length > 0) {
       if (choice[0].NewDeaths / choice[0].TotalDeaths > rates.GlobalDeathRate) {
@@ -45,7 +45,7 @@ export default function CountryCard({ country }) {
     }
 
     const choice = countries.filter((item) => item.CountryCode === selected);
-    console.log("choice on refresh: ", choice);
+
     setdata(choice);
     if (choice.length > 0) {
       if (choice[0].NewDeaths / choice[0].TotalDeaths > rates.GlobalDeathRate) {

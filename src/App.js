@@ -102,7 +102,6 @@ function App() {
       <GlobalRate.Provider value={[globalRates, setglobalRates]}>
         <CompareContext.Provider value={[compareNavigator, removeFromCompare]}>
           <div className="app">
-            {console.log("compref: ", compRef.current)}
             <Navigation />
             <Router id="router">
               <Home path="/" />

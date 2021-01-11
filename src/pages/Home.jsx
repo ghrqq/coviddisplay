@@ -34,6 +34,19 @@ export default function Home(props) {
     setisSelectedLoading(true);
     async function getUserGeolocationDetails() {
       let tempArr = [];
+      const langu = window.navigator.userLanguage || window.navigator.language;
+      console.log("langguuuu: ", langu);
+      const languageName =
+        langu.length > 0
+          ? countryNamer(langu.slice(3, 5).toUpperCase(), "name")
+          : countryNamer(langu.toUpperCase(), "name");
+
+      setlang({ ab: langu, name: languageName[0] });
+
+      tempArr.push(langu.slice(3, 5).toUpperCase());
+      console.log(tempArr);
+
+      setinitial(tempArr);
 
       const result = await (
         await fetch(
@@ -48,20 +61,8 @@ export default function Home(props) {
       } else {
         tempArr.push("DE");
       }
-
-      const langu = window.navigator.userLanguage || window.navigator.language;
-      console.log("langguuuu: ", langu);
-      const languageName =
-        langu.length > 2
-          ? countryNamer(langu.slice(3, 5).toUpperCase(), "name")
-          : countryNamer(langu.toUpperCase(), "name");
-
-      setlang({ ab: langu, name: languageName[0] });
-
-      tempArr.push(langu.slice(3, 5).toUpperCase());
-      console.log(tempArr);
-
       setinitial(tempArr);
+
       setisSelectedLoading(false);
     }
 
@@ -75,7 +76,7 @@ export default function Home(props) {
       </div>
 
       <div className="country-card-container">
-        {initial.length >= 2 ? (
+        {initial.length > 0 ? (
           initial.map((item) => {
             return (
               <div className="wrapper">
