@@ -236,6 +236,20 @@ select {
   /* filter: drop-shadow(150px 150px 50px white); */
 }
 
+/* Compare Page */
+
+.screen-size-alert {
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+}
+.screen-size-alert img {
+  width: 150px;
+  height: auto;
+  margin: 0 auto;
+}
+
 /* Global */
 
 .global-container {
