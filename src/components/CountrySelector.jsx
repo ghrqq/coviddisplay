@@ -1,7 +1,11 @@
 import React, { useState, useContext } from "react";
 import { CountryContext } from "../App";
 
-export default function CountrySelector({ handleChange, defaultCountry }) {
+export default function CountrySelector({
+  handleChange,
+  defaultCountry,
+  order,
+}) {
   const [countries] = useContext(CountryContext);
 
   return (
@@ -14,18 +18,13 @@ export default function CountrySelector({ handleChange, defaultCountry }) {
           ? countries[Math.floor(Math.random() * 100)]["Country"]
           : defaultCountry
       }
-      onChange={(e) => handleChange(e.target.value)}
+      onChange={(e) => handleChange(e, order)}
     >
       {countries.map((item) => (
         <option key={item.Country} value={item.CountryCode}>
           {item.Country}
         </option>
       ))}
-
-      {/* <option value="Germany">Germany</option>
-      <option value="Turkey">Turkey</option>
-      <option value="USA">USA</option>
-      <option value="France">France</option> */}
     </select>
   );
 }

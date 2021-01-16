@@ -1,0 +1,33 @@
+import React from "react";
+import { Link } from "@reach/router";
+
+export default function Footer() {
+  return (
+    <div>
+      <div className="footer">
+        <div className="footer-links">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>{" "}
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <Link to="/about">About</Link>{" "}
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>{" "}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="copy">
+        <a href="https://github.com/ghrqq" target="_blank">
+          Theo 2021
+        </a>{" "}
+      </div>
+    </div>
+  );
+}

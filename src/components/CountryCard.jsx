@@ -5,6 +5,7 @@ import img from "./img/az/vector.svg";
 import preloader from "./preloader.gif";
 import { countryNamer } from "../tools/CountryNamer";
 import CountryDataTable from "./CountryDataTable";
+import CountryMap from "./CountryMap";
 
 export default function CountryCard({ country }) {
   const [selected, setselected] = useState(country);
@@ -17,8 +18,8 @@ export default function CountryCard({ country }) {
   const [wobble, setwobble] = useState(0);
   const [isAddedToCompare, setisAddedToCompare] = useState(false);
 
-  const handleChange = (val) => {
-    setselected(val);
+  const handleChange = (e) => {
+    setselected(e.target.value);
   };
 
   useEffect(() => {
@@ -82,9 +83,10 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="country-card">
-      <div className="country-image">
+      {/* <div className="country-image">
         <img src={countryMap} className={filter} />
-      </div>
+      </div> */}
+      <CountryMap code={selected} filter={filter} />
       <div className="country-name">
         <CountrySelector
           defaultCountry={selected}

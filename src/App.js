@@ -7,11 +7,13 @@ import About from "./pages/About";
 import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
 import Compare from "./pages/Compare";
+import Footer from "./components/Footer";
 
 export const CountryContext = React.createContext([]);
 export const InitialCountryContext = React.createContext([]);
 export const GlobalRate = React.createContext([]);
 export const CompareContext = React.createContext([]);
+export const GlobalData = React.createContext([]);
 
 function App() {
   const [lang, setlang] = useState({});
@@ -101,15 +103,18 @@ function App() {
     <CountryContext.Provider value={[countries, setcountries]}>
       <GlobalRate.Provider value={[globalRates, setglobalRates]}>
         <CompareContext.Provider value={[compareNavigator, removeFromCompare]}>
-          <div className="app">
-            <Navigation />
-            <Router id="router">
-              <Home path="/" />
-              <Compare path="/compare/:country/:country2" />
-              <About path="about" />
-              <Contact path="contact" />
-            </Router>
-          </div>
+          <GlobalData.Provider value={[globalData, setglobalData]}>
+            <div className="app">
+              <Navigation />
+              <Router id="router">
+                <Home path="/" />
+                <Compare path="/compare/:country/:country2" />
+                <About path="about" />
+                <Contact path="contact" />
+              </Router>
+              <Footer />
+            </div>
+          </GlobalData.Provider>
         </CompareContext.Provider>
       </GlobalRate.Provider>
     </CountryContext.Provider>
