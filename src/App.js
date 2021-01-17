@@ -70,9 +70,8 @@ function App() {
 
   useEffect(() => {
     setloading(true);
-    window.alert("Started to fetch.");
+
     async function getData() {
-      window.alert("Now in async");
       const result = await (
         await fetch("https://api.covid19api.com/summary", {
           method: "GET",
@@ -82,7 +81,6 @@ function App() {
         })
       ).json();
       if (result) {
-        window.alert("Result is here.");
       }
       setglobalData(result.Global);
       let rates = {
@@ -92,16 +90,15 @@ function App() {
         GlobalRecoveryRate:
           result.Global.NewRecovered / result.Global.TotalRecovered,
       };
-      window.alert(result.Global);
+
       setglobalRates(rates);
-      window.alert("Global Rates", globalRates);
+
       setcountries(result.Countries);
-      window.alert("Countries", countries);
+
       setapiMessage(result.Message);
       setloading(false);
     }
     getData();
-    window.alert("Get Data fired.");
   }, []);
   if (apiMessage !== "")
     return (
