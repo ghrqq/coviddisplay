@@ -163,15 +163,42 @@ code {
 table {
   margin: 0 auto;
   width: 90%;
+  max-width: 100%;
   background-color: #c4c4c4;
   border-radius: 20px;
   text-align: center;
   /* table-layout: fixed; */
 }
+.max {
+  max-width: 100%;
+}
+
+th {
+  border: none !important;
+  font-weight: 800;
+}
 td {
   border-bottom: 1px black dotted;
   text-align: center;
   margin: 0 auto;
+}
+
+.button-sort {
+  outline: none;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 400;
+  text-shadow: 0.5px 0.5px 0.5px white;
+}
+.button-sort:hover {
+  text-shadow: 5px 5px 5px white;
+}
+.sort-icon {
+  display: inline-block;
+  margin: 0 auto;
+  vertical-align: center;
 }
 
 .data-exp {
@@ -283,6 +310,12 @@ select {
 
 /* About Page */
 
+/* List Page */
+.list {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
 /* Contact Page */
 .contact {
   display: flex;

@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 export default function Footer() {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <div className="footer">
         <div className="footer-links">
           <ul>

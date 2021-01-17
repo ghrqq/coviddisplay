@@ -8,6 +8,7 @@ import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import Footer from "./components/Footer";
+import List from "./pages/List";
 
 export const CountryContext = React.createContext([]);
 export const InitialCountryContext = React.createContext([]);
@@ -111,6 +112,7 @@ function App() {
                 <Compare path="/compare/:country/:country2" />
                 <About path="about" />
                 <Contact path="contact" />
+                <List path="list" />
               </Router>
               <Footer />
             </div>
