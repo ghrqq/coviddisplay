@@ -76,7 +76,7 @@ function App() {
       const config = {
         method: "get",
         url: "https://api.covid19api.com/summary",
-        headers: { "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864" },
+        // headers: { "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864" },
       };
 
       const res = await axios(config);
