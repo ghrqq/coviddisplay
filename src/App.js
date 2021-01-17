@@ -87,6 +87,7 @@ function App() {
         GlobalRecoveryRate:
           result.Global.NewRecovered / result.Global.TotalRecovered,
       };
+      window.alert(result.Global);
       setglobalRates(rates);
       setcountries(result.Countries);
       setapiMessage(result.Message);
