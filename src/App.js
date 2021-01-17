@@ -70,7 +70,9 @@ function App() {
 
   useEffect(() => {
     setloading(true);
+    window.alert("Started to fetch.");
     async function getData() {
+      window.alert("Now in async");
       const result = await (
         await fetch("https://api.covid19api.com/summary", {
           method: "GET",
@@ -94,6 +96,7 @@ function App() {
       setloading(false);
     }
     getData();
+    window.alert("Get Data fired.");
   }, []);
   if (apiMessage !== "")
     return (
