@@ -81,6 +81,9 @@ function App() {
           },
         })
       ).json();
+      if (result) {
+        window.alert("Result is here.");
+      }
       setglobalData(result.Global);
       let rates = {
         GlobalDeathRate: result.Global.NewDeaths / result.Global.TotalDeaths,
@@ -91,7 +94,9 @@ function App() {
       };
       window.alert(result.Global);
       setglobalRates(rates);
+      window.alert("Global Rates", globalRates);
       setcountries(result.Countries);
+      window.alert("Countries", countries);
       setapiMessage(result.Message);
       setloading(false);
     }
