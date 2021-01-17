@@ -11,7 +11,7 @@ const Navigation = () => {
         <Link to="/about">About</Link>{" "}
       </li>
       <li>
-        <Link to="/contact">Contact</Link>{" "}
+        <Link to="/list">List</Link>{" "}
       </li>
     </ul>
   );

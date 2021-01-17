@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 
 import { Router, navigate } from "@reach/router";
 import Contact from "./pages/Contact";
@@ -72,30 +73,39 @@ function App() {
     setloading(true);
 
     async function getData() {
-      const result = await (
-        await fetch("https://api.covid19api.com/summary", {
-          method: "GET",
-          headers: {
-            "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864",
-          },
-        })
-      ).json();
-      if (result) {
-      }
-      setglobalData(result.Global);
+      const config = {
+        method: "get",
+        url: "https://api.covid19api.com/summary",
+        headers: { "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864" },
+      };
+
+      const res = await axios(config);
+      // console.log("res: ", res);
+
+      // const result = await (
+      //   await fetch("https://api.covid19api.com/summary", {
+      //     method: "GET",
+      //     headers: {
+      //       "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864",
+      //     },
+      //   })
+      // ).json();
+
+      setglobalData(res.data.Global);
       let rates = {
-        GlobalDeathRate: result.Global.NewDeaths / result.Global.TotalDeaths,
+        GlobalDeathRate:
+          res.data.Global.NewDeaths / res.data.Global.TotalDeaths,
         GlobalCaseRate:
-          result.Global.NewConfirmed / result.Global.TotalConfirmed,
+          res.data.Global.NewConfirmed / res.data.Global.TotalConfirmed,
         GlobalRecoveryRate:
-          result.Global.NewRecovered / result.Global.TotalRecovered,
+          res.data.Global.NewRecovered / res.data.Global.TotalRecovered,
       };
 
       setglobalRates(rates);
 
-      setcountries(result.Countries);
+      setcountries(res.data.Countries);
 
-      setapiMessage(result.Message);
+      setapiMessage(res.data.Message);
       setloading(false);
     }
     getData();
