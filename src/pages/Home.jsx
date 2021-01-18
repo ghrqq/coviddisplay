@@ -75,18 +75,6 @@ export default function Home(props) {
     //     <GlobalData />
     //   </div>
 
-    //   <div className="country-card-container">
-    //     {initial.length > 0 ? (
-    //       initial.map((item) => {
-    //         return (
-    //           <div className="wrapper">
-    //             <CountryCard key={initial.indexOf(item)} country={item} />
-    //           </div>
-    //         );
-    //       })
-    //     ) : (
-    //       <div>Loading...</div>
-    //     )}
     //     {initial.length <= availableSpace ? (
     //       <div className="wrapper country-adder">
     //         <div
@@ -104,6 +92,23 @@ export default function Home(props) {
     //     ) : null}
     //   </div>
     // </>
-    <h1>Çalışsana amına koduğumun sitesi.</h1>
+
+    <div className="home">
+      <GlobalData />
+      <h1>Çalışsana amına koduğumun sitesi.</h1>
+      <div className="country-card-container">
+        {initial.length > 0 ? (
+          initial.map((item) => {
+            return (
+              <div className="wrapper">
+                <CountryCard key={initial.indexOf(item)} country={item} />
+              </div>
+            );
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    </div>
   );
 }
