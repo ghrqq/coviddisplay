@@ -94,7 +94,7 @@ export default function Home(props) {
     // </>
 
     <div className="home">
-      <GlobalData />
+      {/* <GlobalData /> */}
       <h1>Çalışsana amına koduğumun sitesi.</h1>
       <div className="country-card-container">
         {initial.length > 0 ? (
