@@ -37,6 +37,15 @@ export default function CountryCard({ country }) {
         setfilter("filter-green");
       }
     }
+    const mapPath = require("./img/" + selected.toLowerCase() + "/vector.svg")
+      ? require("./img/" + selected.toLowerCase() + "/vector.svg")
+      : require("./404.png");
+
+    if (!mapPath) {
+      const notFound = require("./404.png");
+      setcountryMap(notFound);
+    }
+    setcountryMap(mapPath.default);
   }, [selected]);
 
   useEffect(() => {
@@ -57,17 +66,9 @@ export default function CountryCard({ country }) {
     }
   }, [countries]);
 
-  useEffect(() => {
-    const mapPath = require("./img/" + selected.toLowerCase() + "/vector.svg")
-      ? require("./img/" + selected.toLowerCase() + "/vector.svg")
-      : require("./404.png");
+  // useEffect(() => {
 
-    if (!mapPath) {
-      const notFound = require("./404.png");
-      setcountryMap(notFound);
-    }
-    setcountryMap(mapPath.default);
-  }, [selected]);
+  // }, [selected]);
 
   const compareClickHandler = () => {
     setwobble(1);
