@@ -70,39 +70,33 @@ export default function Home(props) {
   }, []);
 
   return (
-    <>
-      <div className="home">
-        <GlobalData />
-      </div>
-
-      <div className="country-card-container">
-        {initial.length > 0 ? (
-          initial.map((item) => {
-            return (
-              <div className="wrapper">
-                <CountryCard key={initial.indexOf(item)} country={item} />
-              </div>
-            );
-          })
-        ) : (
-          <div>Loading...</div>
-        )}
-        {initial.length <= availableSpace ? (
-          <div className="wrapper country-adder">
-            <div
-              className="country-card"
-              onClick={() =>
-                setinitial([
-                  ...initial,
-                  countries[Math.floor(Math.random() * 100)]["CountryCode"],
-                ])
-              }
-            >
-              <div className="country-adder-text">Add...</div>
+    <div className="country-card-container">
+      {initial.length > 0 ? (
+        initial.map((item) => {
+          return (
+            <div className="wrapper">
+              <CountryCard key={initial.indexOf(item)} country={item} />
             </div>
+          );
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
+      {initial.length <= availableSpace ? (
+        <div className="wrapper country-adder">
+          <div
+            className="country-card"
+            onClick={() =>
+              setinitial([
+                ...initial,
+                countries[Math.floor(Math.random() * 100)]["CountryCode"],
+              ])
+            }
+          >
+            <div className="country-adder-text">Add...</div>
           </div>
-        ) : null}
-      </div>
-    </>
+        </div>
+      ) : null}
+    </div>
   );
 }
