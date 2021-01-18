@@ -124,11 +124,11 @@ function App() {
             <div className="app">
               <Navigation />
               <Router id="router">
-                <Home path="/" />
+                <Home path="/" default />
                 <Compare path="/compare/:country/:country2" />
-                <About path="about" />
-                <Contact path="contact" />
-                <List path="list" />
+                <About path="/about" />
+                <Contact path="/contact" />
+                <List path="/list" />
               </Router>
               <Footer />
             </div>
