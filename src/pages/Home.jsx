@@ -99,11 +99,9 @@ export default function Home(props) {
       <div className="country-card-container">
         {initial.length > 0 ? (
           initial.map((item) => {
-            return (
-              <div className="wrapper">
-                <CountryCard key={initial.indexOf(item)} country={item} />
-              </div>
-            );
+            <div className="wrapper">
+              <CountryCard key={initial.indexOf(item)} country={item} />
+            </div>;
           })
         ) : (
           <div>Loading...</div>
