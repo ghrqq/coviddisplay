@@ -51,33 +51,42 @@ function App() {
 
   useEffect(() => {
     setloading(true);
+    console.log("covid 1");
 
     async function getData() {
+      console.log("covid 2");
       const config = {
         method: "get",
         url: "https://api.covid19api.com/summary",
       };
 
       const res = await axios(config);
+      console.log("covid 3");
+      if (res) {
+        setglobalData(res.data.Global);
+        let rates = {
+          GlobalDeathRate:
+            res.data.Global.NewDeaths / res.data.Global.TotalDeaths,
+          GlobalCaseRate:
+            res.data.Global.NewConfirmed / res.data.Global.TotalConfirmed,
+          GlobalRecoveryRate:
+            res.data.Global.NewRecovered / res.data.Global.TotalRecovered,
+        };
 
-      setglobalData(res.data.Global);
-      let rates = {
-        GlobalDeathRate:
-          res.data.Global.NewDeaths / res.data.Global.TotalDeaths,
-        GlobalCaseRate:
-          res.data.Global.NewConfirmed / res.data.Global.TotalConfirmed,
-        GlobalRecoveryRate:
-          res.data.Global.NewRecovered / res.data.Global.TotalRecovered,
-      };
+        setglobalRates(rates);
 
-      setglobalRates(rates);
+        setcountries(res.data.Countries);
 
-      setcountries(res.data.Countries);
-
-      setapiMessage(res.data.Message);
-      setloading(false);
+        setapiMessage(res.data.Message);
+        setloading(false);
+        console.log("covid 4");
+      } else {
+        return;
+      }
     }
+    console.log("covid 5");
     getData();
+    console.log("covid 6");
   }, []);
   if (apiMessage !== "")
     return (
