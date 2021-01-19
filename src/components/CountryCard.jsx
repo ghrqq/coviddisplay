@@ -80,10 +80,8 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="country-card">
-      <h2>Working or not?</h2>
-
-      {/* <CountryMap code={selected} filter={filter} />
-      <div className="country-name">
+      <CountryMap code={selected} filter={filter} />
+      {/*<div className="country-name">
         <CountrySelector
           defaultCountry={selected}
           handleChange={handleChange}
