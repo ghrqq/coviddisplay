@@ -87,7 +87,7 @@ export default function CountryCard({ country }) {
           handleChange={handleChange}
         />
       </div>
-      {/*
+
       <div className="country-data">
         {data.length > 0 ? <CountryDataTable country={data} /> : null}
       </div>
@@ -99,7 +99,6 @@ export default function CountryCard({ country }) {
             onAnimationEnd={() => setwobble(0)}
             wobble={wobble}
           >
-            
             Remove
           </div>
         ) : (
@@ -112,7 +111,7 @@ export default function CountryCard({ country }) {
             Add to Compare
           </div>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }
