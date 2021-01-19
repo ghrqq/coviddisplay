@@ -20,7 +20,7 @@ const Contact = () => {
       <br />
       <br />
       <div>
-        <a target="_blank" href="http://linkedin.com">
+        <a target="_blank" rel="noreferrer" href="http://linkedin.com">
           <button
             className="submit-button"
             style={{ backgroundColor: "#2867B2" }}
@@ -28,7 +28,7 @@ const Contact = () => {
             Linkedin
           </button>
         </a>
-        <a target="_blank" href="http://linkedin.com">
+        <a target="_blank" rel="noreferrer" href="http://linkedin.com">
           <button
             className="submit-button"
             style={{ backgroundColor: "#211F1F" }}
@@ -37,7 +37,7 @@ const Contact = () => {
             Github
           </button>
         </a>
-        <a target="_blank" href="http://linkedin.com">
+        <a target="_blank" rel="noreferrer" href="http://linkedin.com">
           <button
             className="submit-button"
             style={{ backgroundColor: "#1DA1F2" }}

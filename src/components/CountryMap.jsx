@@ -20,7 +20,11 @@ export default function CountryMap({ code, filter }) {
 
   return (
     <div className="country-image">
-      <img src={countryMap} className={filter} />
+      <img
+        alt={`Map of selected country ${code}`}
+        src={countryMap}
+        className={filter}
+      />
     </div>
   );
 }

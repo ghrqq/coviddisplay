@@ -297,8 +297,8 @@ select {
 /* Pages */
 
 .home {
-  /* background-image: url("./pages/img/earths.png");
-  background-color: black; */
+  background-image: url("./pages/img/earths.png");
+  background-color: black;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 30%;

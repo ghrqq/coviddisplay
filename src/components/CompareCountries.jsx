@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
-import useWindowDimensions from "../tools/useWindowDimensions";
-import rotate from "./rotate.svg";
-import resize from "./resize.svg";
-import { isMobile } from "react-device-detect";
+import React, { useState, useContext } from "react";
+
 import CountrySelector from "./CountrySelector";
 import { CountryContext } from "../App";
-import preloader from "./preloader.gif";
+import ScreenSizeChecker from "./ScreenSizeChecker";
 
 import CountryMap from "./CountryMap";
 
 export default function CompareCountries(props) {
   const [countries] = useContext(CountryContext);
-  const [countryMap, setcountryMap] = useState(preloader);
-  const [country2Map, setcountry2Map] = useState(preloader);
-  const [filter, setfilter] = useState("filter-green");
 
-  const { width } = useWindowDimensions();
   const [countriesToCompare, setcountriesToCompare] = useState(
     props.countryArr
   );
-  const [global, setglobal] = useState(props.global);
 
   const handleChange = (e, num) => {
     let val = e.target.value;
@@ -32,17 +24,7 @@ export default function CompareCountries(props) {
 
   return (
     <div>
-      {width < 568 && isMobile ? (
-        <div className="screen-size-alert">
-          <img src={rotate} />
-          Please rotate your screen to display this page correctly.
-        </div>
-      ) : width < 568 ? (
-        <div className="screen-size-alert">
-          <img src={resize} />
-          Please enlarge your screen to display this page correctly.
-        </div>
-      ) : null}
+      <ScreenSizeChecker />
 
       {countriesToCompare.length < 2 ? (
         <h2>Please choose at least 2 countries to compare</h2>
@@ -66,7 +48,6 @@ export default function CompareCountries(props) {
                   key={0}
                   order="0"
                 />
-                {/* TODO props and change handler will be added */}
               </div>
             </td>
             <td>Global</td>
@@ -78,7 +59,6 @@ export default function CompareCountries(props) {
                   key={1}
                   order="1"
                 />
-                {/* TODO props and change handler will be added */}
               </div>
             </td>
           </tr>

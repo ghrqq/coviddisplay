@@ -10,13 +10,19 @@ export default function ScreenSizeChecker() {
     <>
       {width < 568 && isMobile ? (
         <div className="screen-size-alert">
-          <img src={rotate} />
+          <img
+            alt="Please rotate your screen to display this page correctly."
+            src={rotate}
+          />
           Please rotate your screen to display this page correctly.
         </div>
       ) : width < 568 ? (
         <div className="screen-size-alert">
-          <img src={resize} />
-          Please enlarge your screen to display this page correctly.
+          <img
+            src={resize}
+            alt="Please enlarge the window to display this page correctly."
+          />
+          Please enlarge the window to display this page correctly.
         </div>
       ) : null}
     </>

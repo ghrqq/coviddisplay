@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext, GlobalRate, GlobalData } from "../App";
-import CompareCountries from "../components/CompareCountries";
+
 import ScreenSizeChecker from "../components/ScreenSizeChecker";
-import { flatten } from "lodash";
+
 import CountryMap from "../components/CountryMap";
 import CountrySelector from "../components/CountrySelector";
 import arrow from "./arrow.svg";
@@ -12,8 +12,6 @@ export default function Compare(props) {
   const [selection, setselection] = useState([]);
   const [rates] = useContext(GlobalRate);
   const [data] = useContext(GlobalData);
-  const [keys, setkeys] = useState([]);
-  const [premiumKeys, setpremiumKeys] = useState([]);
 
   useEffect(() => {
     let tempArr = [];
@@ -25,24 +23,44 @@ export default function Compare(props) {
     );
     tempArr = [...firstToCompare, ...secondToCompare];
     setselection(tempArr);
-    if (tempArr.length > 0) {
-      let iterationKeys = Object.keys(tempArr[0]).slice(4, -1);
-      setkeys(iterationKeys);
-    }
-  }, [props]);
+  }, [props, countries]);
 
   const arrowHandler = (val1, val2, global) => {
     if (val1 > val2 && val1 > global) {
-      return <img src={arrow} className="arrow filter-red" />;
+      return (
+        <img
+          alt="A red arrow upwards."
+          src={arrow}
+          className="arrow filter-red"
+        />
+      );
     }
     if (val1 < val2 && val1 > global) {
-      return <img src={arrow} className="arrow filter-red arrow-down" />;
+      return (
+        <img
+          alt="A red arrow downwards."
+          src={arrow}
+          className="arrow filter-red arrow-down"
+        />
+      );
     }
     if (val1 < val2 && val1 < global) {
-      return <img src={arrow} className="arrow filter-green arrow-down" />;
+      return (
+        <img
+          alt="A green arrow downwards."
+          src={arrow}
+          className="arrow filter-green arrow-down"
+        />
+      );
     }
     if (val1 > val2 && val1 < global) {
-      return <img src={arrow} className="arrow filter-green" />;
+      return (
+        <img
+          alt="A green arrow upwards."
+          src={arrow}
+          className="arrow filter-green"
+        />
+      );
     }
   };
 

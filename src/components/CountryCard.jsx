@@ -2,8 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { CountryContext, GlobalRate, CompareContext } from "../App";
 import CountrySelector from "./CountrySelector";
 
-import preloader from "./preloader.gif";
-
 import CountryDataTable from "./CountryDataTable";
 import CountryMap from "./CountryMap";
 
@@ -13,7 +11,7 @@ export default function CountryCard({ country }) {
   const [rates] = useContext(GlobalRate);
   const [compareHandler, removeFromCompare] = useContext(CompareContext);
   const [data, setdata] = useState("");
-  const [countryMap, setcountryMap] = useState(preloader);
+
   const [filter, setfilter] = useState("filter-green");
   const [wobble, setwobble] = useState(0);
   const [isAddedToCompare, setisAddedToCompare] = useState(false);
@@ -37,16 +35,7 @@ export default function CountryCard({ country }) {
         setfilter("filter-green");
       }
     }
-    const mapPath = require("./img/" + selected.toLowerCase() + "/vector.svg")
-      ? require("./img/" + selected.toLowerCase() + "/vector.svg")
-      : require("./404.png");
-
-    if (!mapPath) {
-      const notFound = require("./404.png");
-      setcountryMap(notFound);
-    }
-    setcountryMap(mapPath.default);
-  }, [selected]);
+  }, [selected, countries, rates.GlobalDeathRate]);
 
   useEffect(() => {
     if (selected === " ") {
@@ -64,7 +53,7 @@ export default function CountryCard({ country }) {
         setfilter("filter-green");
       }
     }
-  }, [countries]);
+  }, [countries, selected, rates.GlobalDeathRate]);
 
   const compareClickHandler = () => {
     setwobble(1);

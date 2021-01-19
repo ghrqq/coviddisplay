@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CountryContext } from "../App";
 import CountryCard from "../components/CountryCard";
 import GlobalData from "../components/GlobalData";
@@ -12,8 +12,6 @@ export default function Home(props) {
 
   //Maximum renderable country (on a single line).
   const [availableSpace, setAvailableSpace] = useState(Math.floor(width / 330));
-
-  const [count, setCount] = useState(2);
 
   const [isSelectedLoading, setisSelectedLoading] = useState("");
   const [lang, setlang] = useState("");
@@ -34,7 +32,8 @@ export default function Home(props) {
     setisSelectedLoading(true);
     async function getUserGeolocationDetails() {
       let tempArr = [];
-      const langu = window.navigator.userLanguage || window.navigator.language;
+      const langu =
+        window.navigator.userLanguage || window.navigator.language || "US";
       console.log("langguuuu: ", langu);
       const languageName =
         langu.length > 0
@@ -92,23 +91,46 @@ export default function Home(props) {
     //     ) : null}
     //   </div>
     // </>
+    <>
+      <div className="home">
+        <GlobalData />
+      </div>
 
-    <div className="home">
-      {/* <GlobalData /> */}
-      <h1>Çalışsana amına koduğumun sitesi.</h1>
-      <h2>{initial}</h2>
-      <h3>{initial.length}</h3>
       <div className="country-card-container">
-        {initial.length > 0 ? (
+        {/* {initial.length > 0 ? (
           initial.map((item) => {
+            {
+              console.log("map fired", item);
+            }
             <div className="wrapper">
               <CountryCard key={initial.indexOf(item)} country={item} />
             </div>;
           })
         ) : (
           <div>Loading...</div>
-        )}
+        )} */}
+        {initial.map((item) => (
+          <div className="wrapper">
+            <CountryCard key={item} country={item} />
+          </div>
+        ))}
+
+        {initial.length <= availableSpace ? (
+          <div className="wrapper country-adder">
+            <div
+              className="country-card"
+              onClick={() =>
+                setinitial([
+                  ...initial,
+                  countries[Math.floor(Math.random() * 100)]["CountryCode"],
+                ])
+              }
+            >
+              <div className="country-adder-text">Add...</div>
+            </div>
+          </div>
+        ) : null}
       </div>
-    </div>
+    </>
   );
 }

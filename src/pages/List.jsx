@@ -7,7 +7,7 @@ import sortUp from "./sort-up.png";
 import sortDown from "./sort-down.png";
 
 export default function List() {
-  const [countries, setcountries] = useContext(CountryContext);
+  const [countries] = useContext(CountryContext);
   const [compareHandler, removeFromCompare] = useContext(CompareContext);
   const [list, setlist] = useState([]);
   const [keys, setkeys] = useState([]);
@@ -163,11 +163,11 @@ export default function List() {
               >
                 {key}{" "}
                 {key !== sortBy ? (
-                  <img className="sort-icon" src={sort} />
+                  <img alt="sort" className="sort-icon" src={sort} />
                 ) : isAsc ? (
-                  <img className="sort-icon" src={sortDown} />
+                  <img alt="sort-down" className="sort-icon" src={sortDown} />
                 ) : (
-                  <img className="sort-icon" src={sortUp} />
+                  <img alt="sort-up" className="sort-icon" src={sortUp} />
                 )}
               </button>
             </th>

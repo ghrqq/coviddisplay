@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copy">
-        <a href="https://github.com/ghrqq" target="_blank">
+        <a rel="noreferrer" href="https://github.com/ghrqq" target="_blank">
           Theo 2021
         </a>{" "}
       </div>

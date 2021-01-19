@@ -18,17 +18,10 @@ export const CompareContext = React.createContext([]);
 export const GlobalData = React.createContext([]);
 
 function App() {
-  const [lang, setlang] = useState({});
-
   // Data loading indicators
   const [loading, setloading] = useState(false);
-  const [isRelatedLoading, setisRelatedLoading] = useState(false);
-  const [isSelectedLoading, setisSelectedLoading] = useState(false);
 
   // Data states
-  const [details, setdetails] = useState({});
-  const [selectedCountry, setselectedCountry] = useState("");
-  const [relatedCountry, setrelatedCountry] = useState("");
 
   // Const Global
 
@@ -38,19 +31,6 @@ function App() {
   const [apiMessage, setapiMessage] = useState("");
 
   // Compare State
-
-  const language = window.navigator.userLanguage || window.navigator.language;
-  // const getUserGeolocationDetailss = () => {
-  //   setisSelectedLoading(true);
-  //   fetch(
-  //     "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setdetails(data));
-  //   setselectedCountry(details.country_name);
-
-  //   setisSelectedLoading(false);
-  // };
 
   const compRef = useRef([]);
 
@@ -76,20 +56,9 @@ function App() {
       const config = {
         method: "get",
         url: "https://api.covid19api.com/summary",
-        // headers: { "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864" },
       };
 
       const res = await axios(config);
-      // console.log("res: ", res);
-
-      // const result = await (
-      //   await fetch("https://api.covid19api.com/summary", {
-      //     method: "GET",
-      //     headers: {
-      //       "X-Access-Token": "5cf9dfd5-3449-485e-b5ae-70a60e997864",
-      //     },
-      //   })
-      // ).json();
 
       setglobalData(res.data.Global);
       let rates = {
@@ -116,6 +85,8 @@ function App() {
         Server is currently processing new data. Please try again in 5 minutes.
       </h2>
     );
+
+  if (loading) return <h2>Loading...</h2>;
   return (
     <CountryContext.Provider value={[countries, setcountries]}>
       <GlobalRate.Provider value={[globalRates, setglobalRates]}>
