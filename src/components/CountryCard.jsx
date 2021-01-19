@@ -81,12 +81,13 @@ export default function CountryCard({ country }) {
   return (
     <div className="country-card">
       <CountryMap code={selected} filter={filter} />
-      {/*<div className="country-name">
+      <div className="country-name">
         <CountrySelector
           defaultCountry={selected}
           handleChange={handleChange}
         />
       </div>
+      {/*
       <div className="country-data">
         {data.length > 0 ? <CountryDataTable country={data} /> : null}
       </div>
