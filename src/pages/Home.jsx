@@ -29,6 +29,7 @@ export default function Home(props) {
   // };
 
   useEffect(() => {
+    let mounted = true;
     setisSelectedLoading(true);
     async function getUserGeolocationDetails() {
       let tempArr = [];
@@ -47,11 +48,13 @@ export default function Home(props) {
 
       setinitial(tempArr);
 
-      const result = await (
-        await fetch(
-          "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-        )
-      ).json();
+      if (mounted) {
+        const result = await (
+          await fetch(
+            "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
+          )
+        ).json();
+      }
 
       if (result) {
         setdetails(result);
@@ -64,7 +67,7 @@ export default function Home(props) {
 
       setisSelectedLoading(false);
     }
-
+    return () => (mounted = false);
     getUserGeolocationDetails();
   }, []);
 
