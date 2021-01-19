@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CountryContext, GlobalRate, CompareContext } from "../App";
 import CountrySelector from "./CountrySelector";
-import img from "./img/az/vector.svg";
+
 import preloader from "./preloader.gif";
-import { countryNamer } from "../tools/CountryNamer";
+
 import CountryDataTable from "./CountryDataTable";
 import CountryMap from "./CountryMap";
 
@@ -66,10 +66,6 @@ export default function CountryCard({ country }) {
     }
   }, [countries]);
 
-  // useEffect(() => {
-
-  // }, [selected]);
-
   const compareClickHandler = () => {
     setwobble(1);
     compareHandler(selected);
@@ -84,16 +80,14 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="country-card">
-      {/* <div className="country-image">
-        <img src={countryMap} className={filter} />
-      </div> */}
-      <CountryMap code={selected} filter={filter} />
+      <h2>Working or not?</h2>
+
+      {/* <CountryMap code={selected} filter={filter} />
       <div className="country-name">
         <CountrySelector
           defaultCountry={selected}
           handleChange={handleChange}
-        />{" "}
-        {/* TODO props and change handler will be added */}
+        />
       </div>
       <div className="country-data">
         {data.length > 0 ? <CountryDataTable country={data} /> : null}
@@ -106,8 +100,8 @@ export default function CountryCard({ country }) {
             onAnimationEnd={() => setwobble(0)}
             wobble={wobble}
           >
-            {" "}
-            Remove{" "}
+            
+            Remove
           </div>
         ) : (
           <div
@@ -119,7 +113,7 @@ export default function CountryCard({ country }) {
             Add to Compare
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
