@@ -96,6 +96,8 @@ export default function Home(props) {
     <div className="home">
       {/* <GlobalData /> */}
       <h1>Çalışsana amına koduğumun sitesi.</h1>
+      <h2>{initial}</h2>
+      <h3>{initial.length}</h3>
       <div className="country-card-container">
         {initial.length > 0 ? (
           initial.map((item) => {
