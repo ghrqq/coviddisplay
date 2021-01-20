@@ -20,23 +20,32 @@ export default function CountryCard({ country }) {
     setselected(e.target.value);
   };
 
-  useEffect(() => {
-    if (selected === " ") {
-      const random = countries[Math.floor(Math.random() * 100)];
-      setdata(random);
-    }
+  // useEffect(() => {
+  //   if (selected === " ") {
+  //     const random = countries[Math.floor(Math.random() * 100)];
+  //     setdata(random);
+  //   }
 
-    const choice = countries.filter((item) => item.CountryCode === selected);
+  //   const choice = countries.filter((item) => item.CountryCode === selected);
 
-    setdata(choice);
-    if (choice.length > 0) {
-      if (choice[0].NewDeaths / choice[0].TotalDeaths > rates.GlobalDeathRate) {
-        setfilter("filter-red");
-      } else {
-        setfilter("filter-green");
-      }
+  //   setdata(choice);
+  //   if (choice.length > 0) {
+  //     if (choice[0].NewDeaths / choice[0].TotalDeaths > rates.GlobalDeathRate) {
+  //       setfilter("filter-red");
+  //     } else {
+  //       setfilter("filter-green");
+  //     }
+  //   }
+  // }, [countries, selected, rates.GlobalDeathRate]);
+
+  const filterProvider = () => {
+    const data = countries.filter((item) => item.CountryCode === selected);
+    if (data[0].NewDeaths / data[0].TotalDeaths > rates.GlobalDeathRate) {
+      return "filter-red";
+    } else {
+      return "filter-green";
     }
-  }, [countries, selected, rates.GlobalDeathRate]);
+  };
 
   const compareClickHandler = () => {
     setwobble(1);
@@ -52,7 +61,7 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="country-card">
-      <CountryMap code={selected} filter={filter} />
+      <CountryMap code={selected} filter={filterProvider()} />
       <div className="country-name">
         <CountrySelector
           defaultCountry={selected}
@@ -61,7 +70,9 @@ export default function CountryCard({ country }) {
       </div>
 
       <div className="country-data">
-        {data.length > 0 ? <CountryDataTable country={data} /> : null}
+        <CountryDataTable
+          country={countries.filter((item) => item.CountryCode === selected)}
+        />
       </div>
       <div className="country-card-footer">
         {isAddedToCompare ? (
