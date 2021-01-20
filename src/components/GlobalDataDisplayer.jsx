@@ -14,8 +14,8 @@ export default function GlobalDataDisplayer() {
           <div className="global-data-num">{globalData.NewConfirmed}</div>
         </div>
         <div className="global-data-box">
-          <div className="global-data-exp">Total Cases</div>
-          <div className="global-data-num"> {globalData.TotalConfirmed} </div>
+          <div className="global-data-exp">New Recovery</div>
+          <div className="global-data-num"> {globalData.NewRecovered} </div>
         </div>
         <div className="global-data-box">
           <div className="global-data-exp">New Deaths</div>
@@ -24,16 +24,16 @@ export default function GlobalDataDisplayer() {
       </div>
       <div className="global-right">
         <div className="global-data-box">
-          <div className="global-data-exp">Total Deaths</div>
-          <div className="global-data-num">{globalData.TotalDeaths}</div>
-        </div>
-        <div className="global-data-box">
-          <div className="global-data-exp">New Recovery</div>
-          <div className="global-data-num">{globalData.NewRecovered}</div>
+          <div className="global-data-exp">Total Cases</div>
+          <div className="global-data-num">{globalData.TotalConfirmed}</div>
         </div>
         <div className="global-data-box">
           <div className="global-data-exp">Total Recovery</div>
           <div className="global-data-num">{globalData.TotalRecovered}</div>
+        </div>
+        <div className="global-data-box">
+          <div className="global-data-exp">Total Deaths</div>
+          <div className="global-data-num">{globalData.TotalDeaths}</div>
         </div>
       </div>
     </div>

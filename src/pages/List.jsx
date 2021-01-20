@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext, CompareContext } from "../App";
 import ScreenSizeChecker from "../components/ScreenSizeChecker";
+import Loading from "../components/Loading";
 
 import sort from "./sort.png";
 import sortUp from "./sort-up.png";
@@ -147,7 +148,7 @@ export default function List() {
     setcompare("");
   };
 
-  if (countries.length < 1 || keys.length < 1) return <h2>Loading...</h2>;
+  if (countries.length < 1 || keys.length < 1) return <Loading />;
 
   return (
     <div className="list">

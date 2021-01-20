@@ -5,6 +5,7 @@ import GlobalDataDisplayer from "../components/GlobalDataDisplayer";
 import useWindowDimensions from "../tools/useWindowDimensions";
 import MainMiddle from "../components/MainMiddle";
 import { countryNamer } from "../tools/CountryNamer";
+import Loading from "../components/Loading";
 // import axios from "axios";
 
 export default function Home(props) {
@@ -90,7 +91,7 @@ export default function Home(props) {
     return () => {};
   }, [countries]);
 
-  if (isSelectedLoading) return <h2>Loading.</h2>;
+  if (isSelectedLoading) return <Loading />;
   return (
     // <>
     //   <div className="home">

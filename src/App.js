@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Compare from "./pages/Compare";
 import Footer from "./components/Footer";
 import List from "./pages/List";
+import Loading from "./components/Loading";
 
 export const CountryContext = React.createContext([]);
 export const InitialCountryContext = React.createContext([]);
@@ -91,7 +92,7 @@ function App() {
       </h2>
     );
 
-  if (loading) return <h2>Loading...</h2>;
+  if (loading) return <Loading />;
   return (
     <>
       <CountryContext.Provider value={[countries, setcountries]}>
