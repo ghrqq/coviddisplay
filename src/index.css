@@ -179,7 +179,7 @@ table {
   background-color: #c4c4c4;
   border-radius: 20px;
   text-align: center;
-  /* table-layout: fixed; */
+  table-layout: fixed;
 }
 .max {
   width: 100%;
