@@ -25,6 +25,23 @@ export default function CountryCard({ country }) {
       const random = countries[Math.floor(Math.random() * 100)];
       setdata(random);
     }
+    const choice = countries.filter((item) => item.CountryCode === selected);
+
+    setdata(choice);
+    if (choice.length > 0) {
+      if (choice[0].NewDeaths / choice[0].TotalDeaths > rates.GlobalDeathRate) {
+        setfilter("filter-red");
+      } else {
+        setfilter("filter-green");
+      }
+    }
+  }, [selected, countries, rates.GlobalDeathRate]);
+
+  useEffect(() => {
+    if (selected === " ") {
+      const random = countries[Math.floor(Math.random() * 100)];
+      setdata(random);
+    }
 
     const choice = countries.filter((item) => item.CountryCode === selected);
 
