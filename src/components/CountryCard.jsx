@@ -62,13 +62,13 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="country-card">
-      {/* <CountryMap code={selected} filter={filterProvider()} /> */}
+      {/* <CountryMap code={selected} filter={filterProvider()} />
       <div className="country-name">
         <CountrySelector
           defaultCountry={selected}
           handleChange={handleChange}
         />
-      </div>
+      </div> */}
 
       <div className="country-data">
         <CountryDataTable
