@@ -8,7 +8,7 @@ import About from "./pages/About";
 import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
 import Compare from "./components/Compare";
-import CompareCop from "./components/CompareCop";
+
 import Footer from "./components/Footer";
 import List from "./pages/List";
 import Loading from "./components/Loading";
@@ -24,7 +24,7 @@ function App() {
   const [loading, setloading] = useState(true);
 
   // Data states
-
+  const [isCompare, setisCompare] = useState(false);
   // Const Global
 
   const [globalRates, setglobalRates] = useState({});
@@ -36,14 +36,24 @@ function App() {
 
   const compRef = useRef([]);
 
+  // const compareNavigator = (country) => {
+  //   if (compRef.current.length < 2) {
+  //     compRef.current = [...compRef.current, country];
+  //   }
+  //   if (compRef.current.length === 2) {
+  //     navigate(`/compare/${compRef.current[0]}/${compRef.current[1]}`);
+  //     window.scrollTo(0, 0);
+  //     compRef.current = [];
+  //   }
+  // };
   const compareNavigator = (country) => {
     if (compRef.current.length < 2) {
       compRef.current = [...compRef.current, country];
     }
     if (compRef.current.length === 2) {
-      navigate(`/compare/${compRef.current[0]}/${compRef.current[1]}`);
+      setisCompare(true);
       window.scrollTo(0, 0);
-      compRef.current = [];
+      // compRef.current = [];
     }
   };
 
@@ -104,10 +114,16 @@ function App() {
             <GlobalData.Provider value={[globalData, setglobalData]}>
               <div className="app">
                 <Navigation />
+                {isCompare ? (
+                  <Compare
+                    country={compRef.current[0]}
+                    country2={compRef.current[1]}
+                  />
+                ) : null}
                 <Router id="router">
                   <Home path="/" default />
-                  <Compare path="/compare/:country/:country2" />
-                  <CompareCop path="/compares/:countries" />
+                  {/* <Compare path="/compare/:country/:country2" /> */}
+
                   <About path="/about" />
                   <Contact path="/contact" />
                   <List path="/list" />
