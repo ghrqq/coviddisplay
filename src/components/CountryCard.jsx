@@ -6,7 +6,7 @@ import CountryDataTable from "./CountryDataTable";
 import CountryMap from "./CountryMap";
 
 export default function CountryCard({ country }) {
-  const [selected, setselected] = useState(country);
+  const [selected, setselected] = useState(country ? country : "US");
   const [countries] = useContext(CountryContext);
   const [rates] = useContext(GlobalRate);
   const [compareHandler, removeFromCompare] = useContext(CompareContext);
