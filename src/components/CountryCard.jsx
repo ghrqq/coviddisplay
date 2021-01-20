@@ -75,7 +75,7 @@ export default function CountryCard({ country }) {
           country={countries.filter((item) => item.CountryCode === selected)}
         />
       </div>
-      <div className="country-card-footer">
+      {/* <div className="country-card-footer">
         {isAddedToCompare ? (
           <div
             className="compare-button red"
@@ -95,7 +95,7 @@ export default function CountryCard({ country }) {
             Add to Compare
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
