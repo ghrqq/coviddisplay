@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext } from "../App";
 import CountryCard from "../components/CountryCard";
-import GlobalData from "../components/GlobalData";
+import GlobalDataDisplayer from "../components/GlobalDataDisplayer";
 import useWindowDimensions from "../tools/useWindowDimensions";
-import { countryNamer } from "../tools/CountryNamer";
-import axios from "axios";
+// import { countryNamer } from "../tools/CountryNamer";
+// import axios from "axios";
 
 export default function Home(props) {
   //Get dimensions for country adder
@@ -15,10 +15,10 @@ export default function Home(props) {
   const [availableSpace, setAvailableSpace] = useState(Math.floor(width / 330));
 
   const [isSelectedLoading, setisSelectedLoading] = useState("");
-  const [lang, setlang] = useState("");
+  // const [lang, setlang] = useState("");
   const [initial, setinitial] = useState([]);
 
-  const [details, setdetails] = useState({});
+  // const [details, setdetails] = useState({});
 
   // const languageSetter = async () => {
   //   setisRelatedLoading(true);
@@ -77,14 +77,10 @@ export default function Home(props) {
 
   useEffect(() => {
     setisSelectedLoading(true);
+    if (!countries) {
+      return;
+    }
     let tempArr = [];
-    axios
-      .get(
-        "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-      )
-      .then((res) =>
-        res.data.country_code ? tempArr.push(res.data.country_code) : null
-      );
 
     let lang =
       window.navigator.userLanguage || window.navigator.language || "US";
@@ -92,10 +88,12 @@ export default function Home(props) {
       tempArr.push(lang.slice(3, 5).toUpperCase());
     }
 
+    // tempArr.push(countries[Math.floor(Math.random() * 100)]["CountryCode"]);
+
     setinitial(tempArr);
     setisSelectedLoading(false);
     return () => {};
-  }, []);
+  }, [countries]);
 
   if (isSelectedLoading) return <h2>Loading.</h2>;
   return (
@@ -123,7 +121,7 @@ export default function Home(props) {
     // </>
     <>
       <div className="home">
-        <GlobalData />
+        <GlobalDataDisplayer />
       </div>
 
       <div className="country-card-container">

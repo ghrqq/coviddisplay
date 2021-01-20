@@ -153,29 +153,31 @@ export default function List() {
     <div className="list">
       <ScreenSizeChecker />
       <table className="max">
-        <tr>
-          {keys.map((key) => (
-            <th>
-              <button
-                className="button-sort"
-                value={key}
-                onClick={(e) => handleSort(e)}
-              >
-                {key}{" "}
-                {key !== sortBy ? (
-                  <img alt="sort" className="sort-icon" src={sort} />
-                ) : isAsc ? (
-                  <img alt="sort-down" className="sort-icon" src={sortDown} />
-                ) : (
-                  <img alt="sort-up" className="sort-icon" src={sortUp} />
-                )}
-              </button>
-            </th>
-          ))}
-          <th> </th>
-        </tr>
+        <tbody>
+          <tr>
+            {keys.map((key) => (
+              <th>
+                <button
+                  className="button-sort"
+                  value={key}
+                  onClick={(e) => handleSort(e)}
+                >
+                  {key}{" "}
+                  {key !== sortBy ? (
+                    <img alt="sort" className="sort-icon" src={sort} />
+                  ) : isAsc ? (
+                    <img alt="sort-down" className="sort-icon" src={sortDown} />
+                  ) : (
+                    <img alt="sort-up" className="sort-icon" src={sortUp} />
+                  )}
+                </button>
+              </th>
+            ))}
+            <th> </th>
+          </tr>
 
-        {sortProvider(sortBy, isAsc)}
+          {sortProvider(sortBy, isAsc)}
+        </tbody>
       </table>
     </div>
   );
