@@ -124,8 +124,8 @@ export default function Home(props) {
         <GlobalDataDisplayer />
       </div>
 
-      <div className="country-card-container">
-        {/* {initial.length > 0 ? (
+      {/* <div className="country-card-container"> */}
+      {/* {initial.length > 0 ? (
           initial.map((item) => {
             {
               console.log("map fired", item);
@@ -137,7 +137,7 @@ export default function Home(props) {
         ) : (
           <div>Loading...</div>
         )} */}
-        {initial.map((item) => (
+      {/* {initial.map((item) => (
           <div className="wrapper">
             <CountryCard key={item} country={item} />
           </div>
@@ -158,7 +158,7 @@ export default function Home(props) {
             </div>
           </div>
         ) : null}
-      </div>
+      </div> */}
     </>
   );
 }
