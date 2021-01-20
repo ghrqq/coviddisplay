@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
 import Compare from "./components/Compare";
+import CompareCop from "./components/CompareCop";
 import Footer from "./components/Footer";
 import List from "./pages/List";
 import Loading from "./components/Loading";
@@ -106,6 +107,7 @@ function App() {
                 <Router id="router">
                   <Home path="/" default />
                   <Compare path="/compare/:country/:country2" />
+                  <CompareCop path="/compares/:countries" />
                   <About path="/about" />
                   <Contact path="/contact" />
                   <List path="/list" />
