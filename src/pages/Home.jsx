@@ -3,6 +3,7 @@ import { CountryContext } from "../App";
 import CountryCard from "../components/CountryCard";
 import GlobalDataDisplayer from "../components/GlobalDataDisplayer";
 import useWindowDimensions from "../tools/useWindowDimensions";
+import MainMiddle from "../components/MainMiddle";
 // import { countryNamer } from "../tools/CountryNamer";
 // import axios from "axios";
 
@@ -123,7 +124,7 @@ export default function Home(props) {
       <div className="home">
         <GlobalDataDisplayer />
       </div>
-
+      {initial ? <MainMiddle countries={initial} /> : null}
       {/* <div className="country-card-container"> */}
       {/* {initial.length > 0 ? (
           initial.map((item) => {
