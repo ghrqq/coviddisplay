@@ -17,6 +17,7 @@ export default function CountryCard({ country }) {
   const [isAddedToCompare, setisAddedToCompare] = useState(false);
 
   const handleChange = (e) => {
+    e.preventDefault();
     setselected(e.target.value);
   };
 

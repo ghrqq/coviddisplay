@@ -30,7 +30,7 @@ function App() {
   const [countries, setcountries] = useState([]);
   const [apiMessage, setapiMessage] = useState("");
 
-  // Compare State
+  // Compare Ref
 
   const compRef = useRef([]);
 
@@ -93,27 +93,30 @@ function App() {
 
   if (loading) return <h2>Loading...</h2>;
   return (
-    <CountryContext.Provider value={[countries, setcountries]}>
-      <GlobalRate.Provider value={[globalRates, setglobalRates]}>
-        <CompareContext.Provider value={[compareNavigator, removeFromCompare]}>
-          <GlobalData.Provider value={[globalData, setglobalData]}>
-            <div className="app">
-              {console.log("rendered")}
-              <Navigation />
-              <Router id="router">
-                <Home path="/" default />
-                <Compare path="/compare/:country/:country2" />
-                <About path="/about" />
-                <Contact path="/contact" />
-                <List path="/list" />
-              </Router>
+    <>
+      <CountryContext.Provider value={[countries, setcountries]}>
+        <GlobalRate.Provider value={[globalRates, setglobalRates]}>
+          <CompareContext.Provider
+            value={[compareNavigator, removeFromCompare]}
+          >
+            <GlobalData.Provider value={[globalData, setglobalData]}>
+              <div className="app">
+                <Navigation />
+                <Router id="router">
+                  <Home path="/" default />
+                  <Compare path="/compare/:country/:country2" />
+                  <About path="/about" />
+                  <Contact path="/contact" />
+                  <List path="/list" />
+                </Router>
 
-              <Footer />
-            </div>
-          </GlobalData.Provider>
-        </CompareContext.Provider>
-      </GlobalRate.Provider>
-    </CountryContext.Provider>
+                <Footer />
+              </div>
+            </GlobalData.Provider>
+          </CompareContext.Provider>
+        </GlobalRate.Provider>
+      </CountryContext.Provider>
+    </>
   );
 }
 
