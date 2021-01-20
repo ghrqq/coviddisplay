@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext, GlobalRate, GlobalData } from "../App";
 
-import ScreenSizeChecker from "../components/ScreenSizeChecker";
+import ScreenSizeChecker from "./ScreenSizeChecker";
 
-import CountryMap from "../components/CountryMap";
-import CountrySelector from "../components/CountrySelector";
+import CountryMap from "./CountryMap";
+import CountrySelector from "./CountrySelector";
 import arrow from "./arrow.svg";
 
 export default function Compare(props) {

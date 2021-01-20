@@ -7,7 +7,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Navigation from "./pages/Navigation";
 import Home from "./pages/Home";
-import Compare from "./pages/Compare";
+import Compare from "./components/Compare";
 import Footer from "./components/Footer";
 import List from "./pages/List";
 import Loading from "./components/Loading";
