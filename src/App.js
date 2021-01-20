@@ -19,7 +19,7 @@ export const GlobalData = React.createContext([]);
 
 function App() {
   // Data loading indicators
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
 
   // Data states
 
@@ -81,9 +81,9 @@ function App() {
         return;
       }
     }
-
     getData();
   }, []);
+
   if (apiMessage !== "")
     return (
       <h2>
@@ -98,6 +98,7 @@ function App() {
         <CompareContext.Provider value={[compareNavigator, removeFromCompare]}>
           <GlobalData.Provider value={[globalData, setglobalData]}>
             <div className="app">
+              {console.log("rendered")}
               <Navigation />
               <Router id="router">
                 <Home path="/" default />
@@ -106,6 +107,7 @@ function App() {
                 <Contact path="/contact" />
                 <List path="/list" />
               </Router>
+
               <Footer />
             </div>
           </GlobalData.Provider>
