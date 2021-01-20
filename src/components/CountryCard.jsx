@@ -69,7 +69,6 @@ export default function CountryCard({ country }) {
           handleChange={handleChange}
         />
       </div>
-      <h2>{selected}</h2>
 
       <div className="country-data">
         <CountryDataTable

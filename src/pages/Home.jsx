@@ -30,71 +30,71 @@ export default function Home(props) {
   //   setisRelatedLoading(false);
   // };
 
-  // useEffect(() => {
-  //   setisSelectedLoading(true);
-  //   console.log("geo 1");
-  //   async function getUserGeolocationDetails() {
-  //     console.log("geo 2");
-  //     let tempArr = [];
-  //     const langu =
-  //       window.navigator.userLanguage || window.navigator.language || "US";
-
-  //     const languageName =
-  //       langu.length > 0
-  //         ? countryNamer(langu.slice(3, 5).toUpperCase(), "name")
-  //         : countryNamer(langu.toUpperCase(), "name");
-
-  //     setlang({ ab: langu, name: languageName[0] });
-  //     console.log("geo 3");
-
-  //     tempArr.push(langu.slice(3, 5).toUpperCase());
-  //     console.log(tempArr);
-
-  //     setinitial(tempArr);
-  //     console.log("geo 4");
-
-  //     const result = await (
-  //       await fetch(
-  //         "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
-  //       )
-  //     ).json();
-  //     if (result) {
-  //       setdetails(result);
-  //       console.log("geo 5");
-  //       tempArr.push(result.country_code);
-  //     } else {
-  //       tempArr.push("DE");
-  //       console.log("geo 6");
-  //     }
-  //     setinitial(tempArr);
-
-  //     setisSelectedLoading(false);
-  //     console.log("geo 7");
-  //   }
-  //   console.log("geo 8");
-  //   getUserGeolocationDetails();
-  //   console.log("geo 9");
-  // }, []);
-
   useEffect(() => {
     setisSelectedLoading(true);
-    if (!countries) {
-      return;
+    console.log("geo 1");
+    async function getUserGeolocationDetails() {
+      console.log("geo 2");
+      let tempArr = [];
+      const langu =
+        window.navigator.userLanguage || window.navigator.language || "US";
+
+      const languageName =
+        langu.length > 0
+          ? countryNamer(langu.slice(3, 5).toUpperCase(), "name")
+          : countryNamer(langu.toUpperCase(), "name");
+
+      setlang({ ab: langu, name: languageName[0] });
+      console.log("geo 3");
+
+      tempArr.push(langu.slice(3, 5).toUpperCase());
+      console.log(tempArr);
+
+      setinitial(tempArr);
+      console.log("geo 4");
+
+      const result = await (
+        await fetch(
+          "https://geolocation-db.com/json/09ba3820-0f88-11eb-9ba6-e1dd7dece2b8"
+        )
+      ).json();
+      if (result) {
+        setdetails(result);
+        console.log("geo 5");
+        tempArr.push(result.country_code);
+      } else {
+        tempArr.push("DE");
+        console.log("geo 6");
+      }
+      setinitial(tempArr);
+
+      setisSelectedLoading(false);
+      console.log("geo 7");
     }
-    let tempArr = [];
+    console.log("geo 8");
+    getUserGeolocationDetails();
+    console.log("geo 9");
+  }, []);
 
-    let lang =
-      window.navigator.userLanguage || window.navigator.language || "US";
-    if (lang) {
-      tempArr.push(lang.slice(3, 5).toUpperCase());
-    }
+  // useEffect(() => {
+  //   setisSelectedLoading(true);
+  //   if (!countries) {
+  //     return;
+  //   }
+  //   let tempArr = [];
 
-    // tempArr.push(countries[Math.floor(Math.random() * 100)]["CountryCode"]);
+  //   let lang =
+  //     window.navigator.userLanguage || window.navigator.language || "US";
+  //   if (lang) {
+  //     tempArr.push(lang.slice(3, 5).toUpperCase());
+  //   }
 
-    setinitial(tempArr);
-    setisSelectedLoading(false);
-    return () => {};
-  }, [countries]);
+  //   tempArr.push(countries[Math.floor(Math.random() * 100)]["CountryCode"]);
+
+  //   setinitial(tempArr);
+  //   setisSelectedLoading(false);
+  //   return () => {};
+  // }, [countries]);
 
   if (isSelectedLoading) return <h2>Loading.</h2>;
   return (
