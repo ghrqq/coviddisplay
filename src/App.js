@@ -96,6 +96,11 @@ function App() {
     getData();
   }, []);
 
+  const handleCompareClose = () => {
+    compRef.current = [];
+    setisCompare(false);
+  };
+
   if (apiMessage !== "")
     return (
       <h2>
@@ -113,23 +118,24 @@ function App() {
           >
             <GlobalData.Provider value={[globalData, setglobalData]}>
               <div className="app">
-                <Navigation />
+                <Navigation handleClose={handleCompareClose} />
                 {isCompare ? (
                   <Compare
                     country={compRef.current[0]}
                     country2={compRef.current[1]}
+                    handleClose={handleCompareClose}
                   />
-                ) : null}
-                <Router id="router">
-                  <Home path="/" default />
-                  {/* <Compare path="/compare/:country/:country2" /> */}
+                ) : (
+                  <Router id="router">
+                    <Home path="/" default />
 
-                  <About path="/about" />
-                  <Contact path="/contact" />
-                  <List path="/list" />
-                </Router>
+                    <About path="/about" />
+                    <Contact path="/contact" />
+                    <List path="/list" />
+                  </Router>
+                )}
 
-                <Footer />
+                <Footer handleClose={handleCompareClose} />
               </div>
             </GlobalData.Provider>
           </CompareContext.Provider>

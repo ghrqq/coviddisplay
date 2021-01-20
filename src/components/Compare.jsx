@@ -87,8 +87,10 @@ export default function Compare(props) {
   return (
     <div>
       <ScreenSizeChecker />
-
       <div className="compare-container">
+        <div className="compare-closer" onClick={props.handleClose}>
+          Close &times;
+        </div>
         <div className="compare-header">
           <div>
             <CountryMap

@@ -92,6 +92,18 @@ code {
   max-width: 100%;
 }
 
+.compare-closer {
+  font-size: 24px;
+  display: block;
+  text-align: right;
+  cursor: pointer;
+  padding: 12px;
+  background-color: #c5c5c5;
+  width: 100%;
+  text-shadow: 3px 2px 6px rgba(150, 150, 150, 1);
+  animation: blinker 1s linear infinite;
+}
+
 .country-image {
   position: relative;
   display: block;
@@ -163,14 +175,14 @@ code {
 table {
   margin: 0 auto;
   width: 90%;
-  max-width: 100%;
+  /* max-width: 100%; */
   background-color: #c4c4c4;
   border-radius: 20px;
   text-align: center;
   /* table-layout: fixed; */
 }
 .max {
-  max-width: 100%;
+  width: 100%;
 }
 
 th {
