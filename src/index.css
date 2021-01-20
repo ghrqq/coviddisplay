@@ -102,6 +102,7 @@ code {
   width: 100%;
   text-shadow: 3px 2px 6px rgba(150, 150, 150, 1);
   animation: blinker 1s linear infinite;
+  border-radius: 20px 20px 0 0;
 }
 
 .country-image {
@@ -321,6 +322,11 @@ select {
 }
 
 /* About Page */
+.about {
+  margin: 0 auto;
+  width: 90%;
+  padding: 36px;
+}
 
 /* List Page */
 .list {

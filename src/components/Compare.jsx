@@ -76,7 +76,6 @@ export default function Compare(props) {
   };
 
   const dataProvider = (code, i) => {
-    console.log("code", code, "i", i);
     let country = countries.filter((item) => item.CountryCode === code);
     return country[0][i];
   };
