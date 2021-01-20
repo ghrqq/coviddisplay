@@ -101,13 +101,13 @@ function App() {
               {console.log("rendered")}
               <Navigation />
               <Router id="router">
-                <Home path="/" default />
+                {/* <Home path="/" default /> */}
                 <Compare path="/compare/:country/:country2" />
                 <About path="/about" />
                 <Contact path="/contact" />
                 <List path="/list" />
               </Router>
-
+              <Home />
               <Footer />
             </div>
           </GlobalData.Provider>
