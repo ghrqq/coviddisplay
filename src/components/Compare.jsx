@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { CountryContext, GlobalRate, GlobalData } from "../App";
-
+import CountryCard from "./CountryCard";
 import ScreenSizeChecker from "./ScreenSizeChecker";
 
 import CountryMap from "./CountryMap";
@@ -87,6 +87,8 @@ export default function Compare(props) {
   return (
     <div>
       <ScreenSizeChecker />
+
+      <CountryCard country={selection[0]} />
 
       <div className="compare-container">
         <div className="compare-header">
