@@ -29,5 +29,18 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <form name="covid-contact" netlify etlify-honeypot="bot-field" hidden>
+      <br />
+      <input type="text" name="name" placeholder="Name" /> <br />
+      <br />
+      <input type="text" name="mail" placeholder="Mail" /> <br />
+      <textarea
+        cols="{80}"
+        rows="{20}"
+        placeholder="Please type your message here."
+      ></textarea>
+      <br />
+      <button className="submit-button" type="submit">Send</button>
+    </form>
   </body>
 </html>

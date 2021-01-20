@@ -7,6 +7,7 @@ const Contact = () => {
         <br />
         <input type="text" name="name" placeholder="Name" /> <br />
         <br /> <input type="text" name="mail" placeholder="Mail" /> <br />
+        <input type="hidden" name="form-name" value="covid-contact" />
         <textarea
           cols={80}
           rows={20}
