@@ -69,8 +69,9 @@ export default function CountryCard({ country }) {
           handleChange={handleChange}
         />
       </div> */}
+      <h2>{selected}</h2>
 
-      <div className="country-data">
+      {/* <div className="country-data">
         <CountryDataTable
           country={countries.filter((item) => item.CountryCode === selected)}
         />
@@ -95,7 +96,7 @@ export default function CountryCard({ country }) {
             Add to Compare
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
